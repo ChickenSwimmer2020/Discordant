@@ -1,0 +1,55 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "test2.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "TILESET_testing.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "test.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 345.5,
+                "y": 210
+            }
+        },
+        "test2.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 342.5,
+                "y": 49.5
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/justt/OneDrive/Desktop/WORKINGTITLE/assets/test",
+    "last.imagePath": "C:/Users/justt/OneDrive/Desktop/WORKINGTITLE/assets/images",
+    "map.height": 30,
+    "map.lastUsedExportFilter": "CSV files (*.csv)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 40,
+    "openFiles": [
+        "test2.tmx"
+    ],
+    "project": "test.tiled-project",
+    "recentFiles": [
+        "test2.tmx",
+        "TILESET_testing.tsx",
+        "test.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    },
+    "tileset.useTransparentColor": true
+}
