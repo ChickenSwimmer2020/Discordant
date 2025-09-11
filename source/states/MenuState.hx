@@ -25,11 +25,6 @@ class MenuState extends FlxState {
 
     //actualy used varibles
     public var currentMenuState:Int = 0; //0=main, 1=play, 2=achivements, 3=options, 4=exit sequence
-    
-
-    public function new() {
-        super();
-    }
 
     override public function create() {
         //make the background first.

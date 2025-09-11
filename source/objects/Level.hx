@@ -30,6 +30,8 @@ class LVL extends FlxGroup {
         return new Player(PSP.x, PSP.y);
 }
 
+
+//TODO: documentation for these because there is a lot.
 class Level extends FlxGroup {
     public function new(level:String) {
         super();
@@ -37,7 +39,7 @@ class Level extends FlxGroup {
     }
     public var exits:FlxTypedGroup<ExitObject>;
     public function loadLevel(JSON:String) {
-        var jsonData:String = File.getContent('assets/$JSON.json');
+        var jsonData:String = File.getContent(Paths.json(JSON));
         var data:Dynamic = Json.parse(jsonData);
 
         //parse the CSV and create the map.

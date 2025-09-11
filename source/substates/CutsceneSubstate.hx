@@ -2,6 +2,8 @@ package substates;
 
 using flixel.util.FlxSpriteUtil;
 
+//TODO: documentation.
+
 class Cutscene extends FlxSubState {
     public var sprites:Array<{sprite:FlxSprite, name:String}> = [];
     public var dialogue:{fullDialogue:{txt:Array<String>, lines:Array<Int>}, curLine:Int};
