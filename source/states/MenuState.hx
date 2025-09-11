@@ -68,7 +68,12 @@ class MenuState extends FlxState {
                 transition(4);
             });
             game.add(button_backtomenu);
-        //--------ACVHIEMENTS MENU--------//
+
+            var button_play:FlxButton = new FlxButton(0, 50, 'play', ()->{
+                FlxG.switchState(()->new PlayState({x: 0, y: 0}, 'testLevel'));
+            });
+            game.add(button_play);
+        //--------ACHIVEMENTS MENU--------//
             var button_backtomenu2:FlxButton = new FlxButton(0, 0, 'back', ()->{
                 transition(5);
             });
