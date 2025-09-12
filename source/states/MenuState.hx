@@ -23,9 +23,6 @@ class MenuState extends FlxState {
      */
     private var main:FlxSpriteGroup;
 
-    //actualy used varibles
-    public var currentMenuState:Int = 0; //0=main, 1=play, 2=achivements, 3=options, 4=exit sequence
-
     override public function create() {
         //make the background first.
         var bg:FlxStarField2D = new FlxStarField2D(0, 0, FlxG.width, FlxG.height, 300);

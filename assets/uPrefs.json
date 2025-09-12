@@ -1,0 +1,7 @@
+{
+    "Preferences":{
+        "Controls":[
+            {"action": "moveUP", "keys":["W", "UP"], "type":"playerAction"}
+        ]
+    }
+}

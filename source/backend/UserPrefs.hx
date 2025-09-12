@@ -2,6 +2,8 @@ package backend;
 
 import flixel.input.keyboard.FlxKey;
 
+using StringTools;
+
 //TODO: this, properly.
 typedef UserPreferencesData = {
     controls:Array<{action:String, keys:Array<FlxKey>, type:String}>
@@ -17,10 +19,14 @@ class UserPrefs {
             {action: "pause", keys: [ESCAPE, BACKSPACE], type: "playerAction"}
         ]
     }
+
+    public static function testFileReading(file:String) {
+        trace(PrefsReader.readFromPrefsFile(file));
+    }
 }
 
 class PrefsReader {
-    public function readFromPrefsFile(file:String):UserPreferencesData {
+    public static function readFromPrefsFile(file:String):UserPreferencesData {
         return {
             controls: []
         };
@@ -29,6 +35,5 @@ class PrefsReader {
 
 class PrefsWriter {
     public function writeToPrefsFile(Prefs:UserPreferencesData) {
-
     }
 }
