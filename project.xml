@@ -1,5 +1,5 @@
 <project>
-    <app main="Main" file="testApp" path="Export"/>
+    <app title="Discordant" main="Main" file="Discordant" path="Export" version="0.0.1"/>
     <window if="hl" width="640" height="480" background="#000000" fps="60" hardware="true" resizeable="false"/>
 
     <source path="source"/>
