@@ -6,3 +6,4 @@ Nothing **stays** in harmony
 - [ ] Compress levels into a single file which is more sophisticated than zip. (ZSDev)
 - [ ] Move level update loop from `PlayState.hx` to `Level.hx:LVL`
 - [ ] Instead of sending the whole level to `Player.hx`s update, send the level in the constructor and reference that in the players update.
+- [ ] Change the `sprites` array in `CutsceneSubstate.hx` from array(spr, name) to map(string, spr) to reduce iteration
