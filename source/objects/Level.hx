@@ -25,13 +25,10 @@ class LVL extends FlxGroup {
     }
     override public function update(elapsed:Float){
         super.update(elapsed);
-        player.updateControls(this);
+        player.updateControls();
     }
-
-    private function start(LVLS:String):Level
-        return new Level(LVLS);
-    private inline function createPlayer(PSP:FlxPoint):Player
-        return new Player(PSP.x, PSP.y);
+    private function start(LVLS:String):Level return new Level(LVLS);
+    private inline function createPlayer(PSP:FlxPoint):Player return new Player(PSP.x, PSP.y, this);
 }
 
 
