@@ -10,7 +10,7 @@ typedef UserPreferencesData = {
 } 
 
 class UserPrefs {
-    public static var currentGamePreferences:UserPreferencesData = {
+    public static var currentGamePreferences:UserPreferencesData = { //TODO: override this IF a uPrefs.json file exists.
         controls: [
             {action: "moveLEFT", keys: [A, LEFT], type: "playerAction"},
             {action: "moveUP", keys: [W, UP], type: "playerAction"},

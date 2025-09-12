@@ -13,9 +13,17 @@ import flixel.tile.FlxTilemap;
 using StringTools;
 using Level.TileTools;
 
+/**
+ * # this is the actual level, THIS is the class you wanna use when making a level.
+ */
 class LVL extends FlxGroup {
     public var player:Player;
     public var level:Level;
+    /**
+     * init a new level
+     * @param startPos player start position
+     * @param lvl level json file
+     */
     public function new(startPos:FlxPoint, lvl:String = 'testLevel') {
         super();
         level = start(lvl);
@@ -31,14 +39,21 @@ class LVL extends FlxGroup {
     private inline function createPlayer(PSP:FlxPoint):Player return new Player(PSP.x, PSP.y, this);
 }
 
-
-//TODO: documentation for these because there is a lot.
+/**
+ * # level
+ * this is the inner workings of a level, as it does everything for creating and rendering a level
+ * which includes tilemaps, collisions, exit points, and more.
+ */
 class Level extends FlxGroup {
     public function new(level:String) {
         super();
         loadLevel(level);
     }
     public var exits:FlxTypedGroup<ExitObject>;
+    /**
+     * this is the function that makes a level, very simple.
+     * @param JSON path to the json file. just input the folders, you dont need `assets/`.
+     */
     public function loadLevel(JSON:String) {
         var jsonData:String = File.getContent(Paths.json(JSON));
         var data:Dynamic = Json.parse(jsonData);
