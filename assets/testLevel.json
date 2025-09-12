@@ -8,7 +8,7 @@
         {"id": 2, "type":"ANY"},
         {"id": 5, "type":"NONE"}
     ],
-    "note": "despite this system being build in a way to where it looks like it can support multiple CSV's. it cant, dont try to add more than one. collisions break.",
+    "note": "despite this system being built in a way to where it's supposed to support multiple CSV's. it both can and cant, adding more than one will break collisions.",
     "indexies": [
         {"name": "one", "area": "main", "index": 0}
     ],
