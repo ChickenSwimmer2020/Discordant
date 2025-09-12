@@ -23,6 +23,10 @@ class LVL extends FlxGroup {
         add(level);
         add(player);
     }
+    override public function update(elapsed:Float){
+        super.update(elapsed);
+        player.updateControls(this);
+    }
 
     private function start(LVLS:String):Level
         return new Level(LVLS);

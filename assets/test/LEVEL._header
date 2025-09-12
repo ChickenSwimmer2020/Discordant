@@ -1,7 +1,0 @@
-\\MAIN//
-[_NAME]="test">
-
-\\level//
-M|   _[content0]_ ;; -[MAIN{0}]-
-A|   _[content1]_ ;; -[LEFT{1}]-
-A|   _[content2]_ ;; -[RIGHT{2}]-
