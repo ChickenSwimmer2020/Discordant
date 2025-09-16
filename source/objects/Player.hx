@@ -51,7 +51,6 @@ class Player extends FlxSprite {
 
     private function initControls() {
         var prefs:UserPreferencesData = UserPrefs.currentGamePreferences; //for easy access
-        UserPrefs.testFileReading('assets/uPrefs.ini');
         for(i in 0...prefs.controls.length) {
             if(prefs.controls[i].type == 'playerAction') { //only pull the player action controls.
                 switch(prefs.controls[i].action) {

@@ -24,6 +24,9 @@ class MenuState extends FlxState {
     private var main:FlxSpriteGroup;
 
     override public function create() {
+        UserPrefs.init(); //init the uPrefs here, THESE VARIBLES ARE STATIC, THEY WONT CHANGE!!
+        //dont add this, or anything. it doesnt do anything other than loading prefs.
+        
         //make the background first.
         var bg:FlxStarField2D = new FlxStarField2D(0, 0, FlxG.width, FlxG.height, 300);
         add(bg); //since we dont need to move the BG at all, we can just declare it here.
