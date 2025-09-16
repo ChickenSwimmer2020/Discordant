@@ -26,8 +26,11 @@ class Player extends FlxSprite {
     public function updateControls() {
         // Horizontal movement
         velocity.x = 0;
-        //TODO: controls menus
-
+        if(FlxG.keys.anyPressed(controls[controlCodes.get('TS')].keys)) {
+            maxVelocity.x = 120;
+        }else{
+            maxVelocity.x = 80;
+        }
         if (FlxG.keys.anyPressed(controls[controlCodes.get('MR')].keys))
             velocity.x = maxVelocity.x;
 
@@ -69,6 +72,9 @@ class Player extends FlxSprite {
                     case "pause":
                         controls.push({action: "pause", keys: prefs.controls[i].keys});
                         controlCodes.set("P", 4);
+                    case "sprint":
+                        controls.push({action: "SPRINT", keys: prefs.controls[i].keys});
+                        controlCodes.set("TS", 5);
                 }
             }
         }

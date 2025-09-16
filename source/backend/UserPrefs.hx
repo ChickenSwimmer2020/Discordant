@@ -16,18 +16,11 @@ class UserPrefs {
             {action: "moveUP", keys: [W, UP], type: "playerAction"},
             {action: "moveDOWN", keys: [S, DOWN], type: "playerAction"},
             {action: "moveRIGHT", keys: [D, RIGHT], type: "playerAction"},
-            {action: "pause", keys: [ESCAPE, BACKSPACE], type: "playerAction"}
+            {action: "pause", keys: [ESCAPE, BACKSPACE], type: "playerAction"},
+            {action: "sprint", keys: [SHIFT], type: "playerAction"}
         ]
     }
-    public static var currentGamePreferences:UserPreferencesData = {
-        controls: [
-            {action: "moveLEFT", keys: [A, LEFT], type: "playerAction"},
-            {action: "moveUP", keys: [W, UP], type: "playerAction"},
-            {action: "moveDOWN", keys: [S, DOWN], type: "playerAction"},
-            {action: "moveRIGHT", keys: [D, RIGHT], type: "playerAction"},
-            {action: "pause", keys: [ESCAPE, BACKSPACE], type: "playerAction"}
-        ]
-    }
+    public static var currentGamePreferences:UserPreferencesData = DefaultGamePreferences; //for defaulting when the game is started
 
     public static function init() {
         currentGamePreferences = PrefsReader.readFromPrefsFile();
