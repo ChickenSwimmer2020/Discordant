@@ -26,7 +26,7 @@ class Player extends FlxSprite {
     public function updateControls() {
         // Horizontal movement
         velocity.x = 0;
-        if(FlxG.keys.anyPressed(controls[controlCodes.get('TS')].keys)) {
+        if(FlxG.keys.anyPressed(controls[controlCodes.get('MS')].keys)) { //for sprinting since we have to re-work it.
             maxVelocity.x = 120;
         }else{
             maxVelocity.x = 80;
@@ -55,26 +55,13 @@ class Player extends FlxSprite {
     private function initControls() {
         var prefs:UserPreferencesData = UserPrefs.currentGamePreferences; //for easy access
         for(i in 0...prefs.controls.length) {
-            if(prefs.controls[i].type == 'playerAction') { //only pull the player action controls.
-                switch(prefs.controls[i].action) {
-                    case "moveLEFT":
-                        controls.push({action: "LEFT", keys: prefs.controls[i].keys});
-                        controlCodes.set("ML", 0);
-                    case "moveUP":
-                        controls.push({action: "UP", keys: prefs.controls[i].keys});
-                        controlCodes.set("MU", 1);
-                    case "moveDOWN":
-                        controls.push({action: "DOWN", keys: prefs.controls[i].keys});
-                        controlCodes.set("MD", 2);
-                    case "moveRIGHT":
-                        controls.push({action: "RIGHT", keys: prefs.controls[i].keys});
-                        controlCodes.set("MR", 3);
-                    case "pause":
-                        controls.push({action: "pause", keys: prefs.controls[i].keys});
-                        controlCodes.set("P", 4);
-                    case "sprint":
-                        controls.push({action: "SPRINT", keys: prefs.controls[i].keys});
-                        controlCodes.set("TS", 5);
+            if(prefs.controls[i].type == 'playerAction') {
+                if(prefs.controls[i].action.startsWith('move')){
+                    controls.push({action: prefs.controls[i].action.substr(4), keys: prefs.controls[i].keys});
+                    controlCodes.set('${prefs.controls[i].action.charAt(0)}${prefs.controls[i].action.charAt(4)}'.toUpperCase(), i); //should work?
+                }else{
+                    controls.push({action: prefs.controls[i].action, keys: prefs.controls[i].keys});
+                    controlCodes.set(prefs.controls[i].action.charAt(0).toUpperCase(), i); //should work?
                 }
             }
         }

@@ -63,8 +63,6 @@ class Level extends FlxGroup {
         var s:String = '';
         var areasnames:Array<{name:String, direction:String, index:Int}> = [];
 
-        var CSVSlist:String = '';
-
         for(i in 0...data.indexies.length) {
             areasnames.push({name: data.indexies[i].name, direction: data.indexies[i].area, index: data.indexies[i].index});
         }

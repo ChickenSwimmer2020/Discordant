@@ -17,7 +17,7 @@ class UserPrefs {
             {action: "moveDOWN", keys: [S, DOWN], type: "playerAction"},
             {action: "moveRIGHT", keys: [D, RIGHT], type: "playerAction"},
             {action: "pause", keys: [ESCAPE, BACKSPACE], type: "playerAction"},
-            {action: "sprint", keys: [SHIFT], type: "playerAction"}
+            {action: "moveSPRINT", keys: [SHIFT], type: "playerAction"}
         ]
     }
     public static var currentGamePreferences:UserPreferencesData = DefaultGamePreferences; //for defaulting when the game is started
