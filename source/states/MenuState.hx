@@ -1,5 +1,7 @@
 package states;
 
+import substates.CutsceneSubstate.Cutscene;
+import substates.CutsceneSubstate.CutsceneReader;
 import substates.options.ControlsSubstate;
 import lime.app.Application;
 import flixel.group.FlxSpriteGroup;
@@ -52,12 +54,8 @@ class MenuState extends FlxState {
 
 
         //--------MAIN MENU--------//
-            for(i in 0...4) {
-                var button:FlxButton = new FlxButton(0, 100 + (20 * i), ["play", "achivements", "options", "exit"][i], ()->{
-                    transition(i);
-                });
-                main.add(button);
-            }
+            for(i in 0...4) main.add(new FlxButton(0, 100 + (20 * i), ["play", "achivements", "options", "exit"][i], ()->{transition(i);}));
+
 
         //--------GAME MENU--------//
             var button_backtomenu:FlxButton = new FlxButton(0, 0, 'back', ()->{
@@ -69,6 +67,11 @@ class MenuState extends FlxState {
                 FlxG.switchState(()->new PlayState({x: 0, y: 0}, 'testLevel'));
             });
             game.add(button_play);
+
+            var testCutscene:FlxButton = new FlxButton(0, 70, 'test Cutscene File', ()->{
+                CutsceneReader.readFromCutsceneFile('testScene');
+            });
+            game.add(testCutscene);
         //--------ACHIVEMENTS MENU--------//
             var button_backtomenu2:FlxButton = new FlxButton(0, 0, 'back', ()->{
                 transition(5);

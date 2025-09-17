@@ -1,0 +1,11 @@
+<Cutscene>
+    <Sprite name="framesAnimated" x="400" y="0" image="PressEnterPLACEHOLDER" animated="true" sizeX="100" sizeY="20"/>
+
+    <Anim pointer="framesAnimated" name="idle" fps="8" frames="0,1,2,3,3,3,3" loop="true" flipX="false" flipY="false"/>
+    <playAnim pointer="framesAnimated" anim="idle"/>
+
+
+    <startDialog/>
+    <setFloat pointer="_DIALOG" property="y" value="720"/>
+    <TweenY pointer="_DIALOG" y="310" time="1.3" ease="expoOut" tweentype="0" startDelay="0.5"/>
+</Cutscene>
