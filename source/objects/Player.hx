@@ -8,7 +8,7 @@ using StringTools;
 
 class Player extends FlxSprite {
     private var levelPointer:Level;
-    private var controls:Array<{action:String, keys:Array<FlxKey>}> = [];
+    private var controls:Array<{action:String, keys:Array<FlxKey>}> = []; //TODO: find way to consolodate this array and map into one map.
     private var controlCodes:Map<String, Int> = new Map<String, Int>();
     public function new(x:Float, y:Float, level:LVL) {
         super(x, y);
