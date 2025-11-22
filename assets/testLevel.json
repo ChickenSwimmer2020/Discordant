@@ -1,14 +1,25 @@
 {
+    "popup":{
+        "offset": 1,
+        "chapter": "chapter 0",
+        "area": "Testing Room"
+    },
     "startXY":[0, 0],
+        "comment0": "works on a tile based system. value 1 is colum, value 2 is row, would have done this in a comment but the haxe parse is a bitch.",
     "exits":[
-        {"tile":[0, 0], "to":"testState", "startPos":[0, 0]}
+        {"tile":[37, 12], "to":"testLevel2", "startPos":[0, 0]}
     ],
     "collisionTypes": [
         {"id": 1, "type":"ANY"},
         {"id": 2, "type":"ANY"},
         {"id": 5, "type":"NONE"}
     ],
-    "note": "despite this system being built in a way to where it's supposed to support multiple CSV's. it both can and cant, adding more than one will break collisions.",
+        "comment1": [
+            "despite this system being built in a way to where it's supposed to support multiple CSV's.",
+            "it both can and cant",
+            "adding more than one will break collisions.",
+            "but only in a way to where tilesets other than the initial one will lose collision"
+        ],
     "indexies": [
         {"name": "one", "area": "main", "index": 0}
     ],

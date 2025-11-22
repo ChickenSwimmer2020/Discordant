@@ -1,0 +1,11 @@
+{
+    "dialog":{
+        "sections":[
+            {"t": "1", "l": ["hello world!","im a goofy goober yeahhh this is a test of dialog."]},
+            {"t": "2", "l": ["sup fuckers im evil pomni!", "im quoating random shit for this"]},
+            {"t": "3", "l": ["i thougt this was, america.","i am the original. starwalker"]},
+            {"t": "4", "l": ["i was an adventuruer like you, until i took an arrow to the knee","DIAPOINTER:CLOSE"]}
+        ]
+    }
+}
+

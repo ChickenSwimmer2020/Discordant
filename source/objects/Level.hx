@@ -1,5 +1,6 @@
 package objects;
 
+import flixel.util.FlxTimer;
 import flixel.tile.FlxTile;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxPoint;
@@ -30,12 +31,39 @@ class LVL extends FlxGroup {
         player = createPlayer(startPos);
         add(level);
         add(player);
+
+        if(Json.parse(File.getContent(Paths.json(lvl))).popup != null) {
+            var pop:ChapterPopup = new ChapterPopup();
+            add(pop);
+            var chapterData:Dynamic = Json.parse(File.getContent(Paths.json(lvl))).popup;
+            new FlxTimer().start(chapterData.offset, (_) -> {
+                pop.playAnimation(chapterData.chapter, chapterData.area);
+                pop.onAnimComplete = () -> {
+                    pop.destroy();
+                };
+                _.destroy();
+            });
+        }else{
+            trace('no popup data found...');
+        }
     }
     override public function update(elapsed:Float){
         super.update(elapsed);
         player.updateControls();
+
+       //#if debug
+       //    if(FlxG.keys.justPressed.ONE) {
+       //        var pop:ChapterPopup = new ChapterPopup();
+       //        add(pop);
+       //        pop.playAnimation('chapter 0', 'Testing Level');
+       //        pop.onAnimComplete = () -> {
+       //            pop.destroy();
+       //        };
+       //    }
+       //#end
+
     }
-    private function start(LVLS:String):Level return new Level(LVLS);
+    private function start(LVLS:String):Level return new Level(LVLS, this);
     private inline function createPlayer(PSP:FlxPoint):Player return new Player(PSP.x, PSP.y, this);
 }
 
@@ -45,16 +73,16 @@ class LVL extends FlxGroup {
  * which includes tilemaps, collisions, exit points, and more.
  */
 class Level extends FlxGroup {
-    public function new(level:String) {
+    public function new(level:String, top:FlxGroup) {
         super();
-        loadLevel(level);
+        loadLevel(level, top);
     }
     public var exits:FlxTypedGroup<ExitObject>;
     /**
      * this is the function that makes a level, very simple.
      * @param JSON path to the json file. just input the folders, you dont need `assets/`.
      */
-    public function loadLevel(JSON:String) {
+    public function loadLevel(JSON:String, toplevel:FlxGroup) {
         var jsonData:String = File.getContent(Paths.json(JSON));
         var data:Dynamic = Json.parse(jsonData);
 
@@ -70,7 +98,7 @@ class Level extends FlxGroup {
         for(i in 0...data.tiles.length) {
             if(data.tiles[i][0] == areasnames[i].name) {
                 trace("found correct tiles...\nloading...");
-                add(loadTiles(i, data.tiles[i], data, areasnames[i]).createExits(data));
+                add(loadTiles(i, data.tiles[i], data, areasnames[i]).createExits(data, toplevel));
             }
         }
     }
@@ -124,20 +152,53 @@ class Level extends FlxGroup {
 }
 
 class ExitObject extends FlxObject {
-    public function new(x:Float, y:Float, toLevel:String, startPos:Array<Float>, alignToGrid:Bool = true) {
+    private var top:FlxGroup;
+    private var to:String;
+    private var LVE:Level;
+    public function new(x:Float, y:Float, toLevel:String, startPos:Array<Float>, alignToGrid:Bool = true, topLevel:FlxGroup) {
         super(x, y);
+        top = topLevel;
+        to = toLevel;
         if(startPos.length > 2) throw haxe.io.Error.Custom("Stack overflow!! to many objects in start position array.");
 
         if(alignToGrid) setPosition(Math.floor((x + 8) / 16) * 16, Math.floor((y + 8) / 16) * 16); //force align to the grid.
         width = height = 16;
+
+        for(i in 0...top.members.length) {
+            if(Std.isOfType(top.members[i], Level)) {
+                var L:Level = cast top.members[i];
+                LVE = L;
+            }else{
+                throw haxe.io.Error.Custom("Oopsie Doopsie!!\nSomething went Wwong!! >.<");
+            }
+        }
+    }
+
+    
+    override public function update(elapsed:Float) {
+        super.update(elapsed);
+
+        for(i in 0...top.members.length) {
+            if(Std.isOfType(top.members[i], Player)) {
+                var plr:Player = cast top.members[i];
+                if(plr.overlaps(this)) {
+                    trace('FUCKER IS STEPPING ON ME >\\\\.\\\\<!!\n\n\nTODO: implement this!');
+                }
+            }
+        }
     }
 }
 
 class TileTools {
-    static public function createExits(tiles:FlxTilemap, data:Dynamic) {
+    static public function createExits(tiles:FlxTilemap, data:Dynamic, ptr:FlxGroup):FlxTilemap {
         var exits:Array<{xy:Array<Float>, to:String, startPos:Array<Float>}> = [];
-        for(i in 0...data.exits.length) exits.push({xy: data.exits[i].tile, to: data.exits[i].to, startPos: data.exits[i].startPos});
-        for(i in 0...exits.length) FlxG.state.add(new ExitObject(exits[i].xy[0], exits[i].xy[1], exits[i].to, exits[i].startPos));
+        for(i in 0...data.exits.length) {
+            exits.push({xy: data.exits[i].tile, to: data.exits[i].to, startPos: data.exits[i].startPos});
+        }
+        for(i in 0...exits.length){ 
+            FlxG.state.add(new ExitObject(0 + (16 * exits[i].xy[0] - 16), 0 + (16 * exits[i].xy[1] - 16), exits[i].to, exits[i].startPos, ptr));
+            trace('added new exit object. $i');
+        }
         return tiles;
     }
 }

@@ -26,6 +26,7 @@ class Player extends FlxSprite {
     public function updateControls() {
         // Horizontal movement
         velocity.x = 0;
+        velocity.y = 0;
 
         //TODO: find way to optimize ts
         if(FlxG.keys.anyPressed(controls[controlCodes.get('MS')].keys)) { //for sprinting since we have to re-work it.

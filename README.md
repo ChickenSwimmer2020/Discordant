@@ -9,6 +9,6 @@ Nothing **stays** in harmony
 - [x] Compress levels into a single file which is more sophisticated than zip. (ZSDev) //which is already done through the json file.
 - [x] Move level update loop from `PlayState.hx` to `Level.hx:LVL` //did this --CS2020
 - [x] Instead of sending the whole level to `Player.hx`s update, send the level in the constructor and reference that in the players update. //did this --CS2020
-- [ ] Change the `sprites` array in `CutsceneSubstate.hx` from array(spr, name) to map(string, spr) to reduce iteration
+- [x] Change the `sprites` array in `CutsceneSubstate.hx` from array(spr, name) to map(string, spr) to reduce iteration
 - [ ] Make custom physics instead of `FlxG.collide()` to maximize support for custom physics objects
 - [x] Reading user preferences from `uPrefs.json`. //done --CS2020

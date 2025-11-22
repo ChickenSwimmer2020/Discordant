@@ -1,5 +1,7 @@
 package states;
 
+import backend.shaders.WaveShader;
+import substates.BattleState;
 import substates.CutsceneSubstate.Cutscene;
 import substates.CutsceneSubstate.CutsceneReader;
 import substates.options.ControlsSubstate;
@@ -87,34 +89,36 @@ class MenuState extends FlxState {
                 openSubState(new ControlsSubstate());
             });
             options.add(b);
+
+        persistentUpdate = true;
     }
 
     function transition(type:Int) {
         switch(type) {
             case 0: //to play menu
-                FlxTween.tween(main, {y: 640}, 1, {ease: FlxEase.expoIn});
-                FlxTween.tween(game, {y: 0}, 1, {ease: FlxEase.expoIn});
+                FlxTween.tween(main, {y: 640}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(game, {y: 0}, 1, {ease: FlxEase.expoOut});
             case 1: //to awards menu
-                FlxTween.tween(main, {x: -640}, 1, {ease: FlxEase.expoIn});
-                FlxTween.tween(achivements, {x: 0}, 1, {ease: FlxEase.expoIn});
+                FlxTween.tween(main, {x: -640}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(achivements, {x: 0}, 1, {ease: FlxEase.expoOut});
             case 2: //to options menu
-                FlxTween.tween(main, {x: 640}, 1, {ease: FlxEase.expoIn});
-                FlxTween.tween(options, {x: 0}, 1, {ease: FlxEase.expoIn});
+                FlxTween.tween(main, {x: 640}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(options, {x: 0}, 1, {ease: FlxEase.expoOut});
             case 3: //exiting game
-                FlxTween.tween(main, {y: -640}, 1, {ease: FlxEase.expoIn});
-                FlxTween.tween(Application.current.window, {opacity: 0}, 1, {ease: FlxEase.expoIn, onComplete: (_)->{
+                FlxTween.tween(main, {y: -640}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(Application.current.window, {opacity: 0}, 1, {ease: FlxEase.expoOut, onComplete: (_)->{
                     Sys.exit(0);
                 }});
 
             case 4: //back to main from play
-                FlxTween.tween(main, {y: 0}, 1, {ease: FlxEase.expoIn});
-                FlxTween.tween(game, {y: -640}, 1, {ease: FlxEase.expoIn});
+                FlxTween.tween(main, {y: 0}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(game, {y: -640}, 1, {ease: FlxEase.expoOut});
             case 5: //back to main from awards
-                FlxTween.tween(main, {x: 0}, 1, {ease: FlxEase.expoIn});
-                FlxTween.tween(achivements, {x: 640}, 1, {ease: FlxEase.expoIn});
+                FlxTween.tween(main, {x: 0}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(achivements, {x: 640}, 1, {ease: FlxEase.expoOut});
             case 6: //back to main from options
-                FlxTween.tween(main, {x: 0}, 1, {ease: FlxEase.expoIn});
-                FlxTween.tween(options, {x: -640}, 1, {ease: FlxEase.expoIn});
+                FlxTween.tween(main, {x: 0}, 1, {ease: FlxEase.expoOut});
+                FlxTween.tween(options, {x: -640}, 1, {ease: FlxEase.expoOut});
             //dont need a case 7.
             default:
                 trace('Undefined transition: $type');

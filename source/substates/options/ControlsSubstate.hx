@@ -4,6 +4,8 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import flixel.text.FlxInputText;
 import flixel.input.keyboard.FlxKey;
 
+using StringTools;
+
 class ControlsSubstate extends FlxSubState {
     var totalControls:Map<Int, {a:String, k:Array<FlxKey>}> = [];
     
@@ -46,10 +48,19 @@ private class ControlsObject extends flixel.group.FlxSpriteGroup {
         super();
         c = curControl;
 
-        var t:FlxText = new FlxText(50, 50 + (25 * iterator), 0, curControl, 24);
+        var CT:String = '';
+        if(c.startsWith('m')) {
+            CT = c.substr(4);
+            CT = CT.charAt(0).toUpperCase() + CT.substr(1).toLowerCase();
+        }else{
+            CT = c;
+            CT = CT.charAt(0).toUpperCase() + CT.substr(1).toLowerCase();
+        }
+
+        var t:FlxText = new FlxText(50, 50 + (25 * iterator), 0, CT, 24);
         add(t);
-        var type1:FlxInputText = new FlxInputText(t.width + 50, t.y, 100, Controls[0], 8);
-        var type2:FlxInputText = new FlxInputText(type1.x + 150, t.y, 100, Controls[1], 8);
+        var type1:FlxInputText = new FlxInputText(150, t.y + 10, 100, Controls[0], 8);
+        var type2:FlxInputText = new FlxInputText(type1.x + 150, t.y + 10, 100, Controls[1], 8);
         add(type1);
         add(type2);
 
